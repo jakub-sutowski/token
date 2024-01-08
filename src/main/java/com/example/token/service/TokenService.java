@@ -12,18 +12,20 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class TokenService {
 
-    private static final String TOKEN_CORRECT_CODE = "1";
     private final UserRepository userRepository;
+
+    private static final String CORRECT_TOKEN_CODE = "1";
+    public static final String INVALID_TOKEN_CODE = "2";
 
     public ValidateResponse valid(ValidateRequest request) {
         String email = request.getEmail();
         User user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotExist(email));
         String token = user.getToken();
-//        LocalDateTime tokenCreationDate = user.getTokenCreationDate();
+
         if (request.getToken().equals(token)) {
-            return ValidateResponse.builder().statusCode(TOKEN_CORRECT_CODE).build();
+            return ValidateResponse.builder().statusCode(CORRECT_TOKEN_CODE).build();
         } else {
-            return ValidateResponse.builder().statusCode("2").build();
+            return ValidateResponse.builder().statusCode(INVALID_TOKEN_CODE).build();
         }
     }
 }

@@ -3,6 +3,7 @@ package com.example.token.controller;
 import com.example.token.model.request.RegisterRequest;
 import com.example.token.model.request.TokenRequest;
 import com.example.token.model.request.ValidateRequest;
+import com.example.token.model.response.RegisterResponse;
 import com.example.token.model.response.TokenResponse;
 import com.example.token.model.response.ValidateResponse;
 import com.example.token.service.TokenService;
@@ -26,9 +27,9 @@ public class TokenController {
     private final TokenService tokenService;
 
     @PostMapping("/register/allegro")
-    public ResponseEntity<Void> addUserFromAllegro(@RequestBody RegisterRequest registerRequest) {
-        userService.addUserFromAllegro(registerRequest);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<RegisterResponse> addUserFromAllegro(@RequestBody RegisterRequest request) {
+        RegisterResponse registerResponse = userService.addUserFromAllegro(request);
+        return ResponseEntity.ok(registerResponse);
     }
 
     @PostMapping("/generate")
@@ -38,8 +39,8 @@ public class TokenController {
     }
 
     @PostMapping("/valid")
-    public ResponseEntity<ValidateResponse> validateToken(@RequestBody ValidateRequest validateRequest) {
-        ValidateResponse validateResponse = tokenService.valid(validateRequest);
+    public ResponseEntity<ValidateResponse> validateToken(@RequestBody ValidateRequest request) {
+        ValidateResponse validateResponse = tokenService.valid(request);
         return ResponseEntity.ok(validateResponse);
     }
 }
