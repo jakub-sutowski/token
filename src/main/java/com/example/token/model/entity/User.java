@@ -31,7 +31,6 @@ public class User {
 
     private LocalDateTime tokenCreationDate;
 
-
     public void setToken(String token) {
         this.token = token;
         tokenCreationDate = LocalDateTime.now();

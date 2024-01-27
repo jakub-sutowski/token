@@ -14,15 +14,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserDto {
 
-    @NotNull
-    @Size(min = 2)
     private String firstName;
 
-    @NotNull
-    @Size(min = 2)
     private String lastName;
 
-    @NotNull
-    @Email
     private String email;
 }

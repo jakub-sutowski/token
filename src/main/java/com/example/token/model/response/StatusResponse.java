@@ -1,5 +1,6 @@
 package com.example.token.model.response;
 
+import com.example.token.type.StatusCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterResponse {
+public class StatusResponse {
 
-    private String statusCode;
+    private StatusCode statusCode;
 }
